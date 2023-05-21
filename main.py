@@ -10,6 +10,17 @@ if __name__ == '__main__':
     assert parse('http://example.com/') == {}
     assert parse('http://example.com/?') == {}
     assert parse('http://example.com/?name=Dima') == {'name': 'Dima'}
+    assert parse('https://test.com?test1=test&test2=test2&test3=test3') == {'test1': ['test'], 'test2': ['test2'],
+                                                                            'test3': ['test3']}
+    assert parse('https://test.com?test=1&test=2') == {'test': ['1', '2']}
+    assert parse('https://test.com?test=1&test2') == {'test': ['1'], 'test2': ['']}
+    assert parse('https://test.com?test=1&test=1') == {'test': ['1', '1']}
+    assert parse('https://test.com') == {}
+    assert parse('https://test.com?') == {}
+    assert parse('https://test.com?test') == {'test': ['']}
+    assert parse('https://test.com?test1=test&test2') == {'test1': ['test'], 'test2': ['']}
+    assert parse('https://test.com?test1=test&test1=test2') == {'test1': ['test', 'test2']}
+    assert parse('https://test.com?test1=&test2=test') == {'test1': [''], 'test2': ['test']}
 
 def parse_cookie(query: str) -> dict:
     cookies = query.split(';')
