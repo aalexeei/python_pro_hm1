@@ -44,4 +44,4 @@ if __name__ == '__main__':
     assert parse_cookie('name=Dima;age=28;name=Dima') == {'name': 'Dima', 'age': '28'}
     assert parse_cookie('name=Dima;age=28;age=30') == {'name': 'Dima', 'age': '30'}
     assert parse_cookie('=Dima;age=28;') == {'': 'Dima', 'age': '28'}
-    assert parse_cookie('name=Dima;=28;') == {'name': 'Dima', '':
+    assert parse_cookie('name=Dima;=28;') == {'name': 'Dima', '': '28'}
